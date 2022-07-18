@@ -30,15 +30,9 @@ print("My Simple Calculator")
 # Write a function called add_numbers that will take two numbers and return the sum.
 
 
-
-def add():
-	print("What is the first number")
-	numb1 = int(input())
-
-	print("What is the second number")
-	numb2 = int(input())
+def add(numb1, numb2):
 	sum12 = numb1 + numb2
-	print(f"{numb1} + {numb2} = {sum12}")
+	return sum12
 
 
 
@@ -47,14 +41,8 @@ def add():
 
 
 # Write a function called sub_numbers that will take two numbers and return the difference.
-def subtract():
-	print("What is the first number")
-	numb1 = int(input())
-
-	print("What is the second number")
-	numb2 = int(input())
-	difference12 = numb1 - numb2
-	print(f"{numb1} - {numb2} = {difference12}")
+def subtract(numb1, numb2):
+	return numb1 - numb2	
 
 
 
@@ -86,27 +74,15 @@ def subtract():
 # Write a function called multiply_numbers that will take two numbers and return the product.
 
 
-def multiply():
-	print("What is the first number")
-	numb1 = int(input())
-
-	print("What is the second number")
-	numb2 = int(input())
-	product12 = numb1 * numb2
-	print(f"{numb1}* {numb2} = {product12}")
+def multiply(numb1, numb2):
+	return	numb1 * numb2
 
 
 
 # Write a function called divide_numbers that will take two numbers and return the quotient.
 
-def divide():
-	print("What is the first number")
-	numb1 = int(input())
-
-	print("What is the second number")
-	numb2 = int(input())
-	quotient12 = numb1 / numb2
-	print(f"{numb1}/{numb2} = {quotient12}")
+def divide(numb1, numb2):
+	return numb1/numb2
 
 
 
@@ -135,30 +111,29 @@ def divide():
 
 # -------------------------------------------- 
 
+numb1 = input("Enter Number1")
+numb2 = input("Enter Number2")
+
+	
 
 
 
-
-def calc():
+def calc(numb1, numb2):
 	print("+, -, /, *")
 	opera = input()
 	if opera == "+":
-		add()
-	if opera == "-":	
-		subtract()
-	if opera == "/":
-		divide()
-	if opera == "*":
-		multiply()
+		add(numb1, numb2)
+	elif opera == "-":	
+		subtract(numb1, numb2)
+	elif opera == "/":
+		divide(numb1, numb2)
+	elif opera == "*":
+		multiply(numb1, numb2)
+	else:
+		print("error")
+		calc()
 
-
-
-
-
-calc()
-
-
-
+calc(numb1, numb2)
 
 
 # -------------------------------------------- 
