@@ -25,8 +25,9 @@ for x in range(11):
    
 
 #-->TODO: Write a loop that prints a happy birthday message for every year you have been alive.
-
-
+bdn = input("How old are you?")
+for x in range(int(bdn)):
+    print("Happy birthday")
 
 print("------------------- CHALLENGE 2 : ITERATOR ----------------------")
 
@@ -38,10 +39,11 @@ for x in colors:
     print("The color is: " + x)
 
 #-->TODO: Declare a list with at least 5 animals. You provide the animals.
-animals = []
+animals = ["lion", "cat", "fish", "dog", "frog"]
 
 #-->TODO: Print all the animals in the array with a for loop. 
-
+for x in animals:
+    print("animals:" + x)
 
 
 print("------------------- CHALLENGE 3 : EVEN COUNTDOWN ------------------")
@@ -57,9 +59,15 @@ else:
     print(str(random) + " is odd!")
 
 #-->TODO: Write a function that counts BACKWARDS from 100 and prints only even numbers
-
+def bla():
+    for x in range(100, -1, -2):
+        print (x)
 
 #-->TODO: Write a function that counts BACKWARDS from the given random number and prints only odd numbers
+def ble():
+    for x in range(random, 0, -1) :
+        if x % 2 != 0:
+            print(x)
 
 
 print("------------------- CHALLENGE 4 : Finder ------------------")
@@ -72,16 +80,21 @@ else:
     print("No, that color is not one of my favorites")
 
 #-->TODO Declare a list of any strings you  want: cities, friends, movies, etc.
-
+drinks =  ["coca cola", "pepsi", "appla juice", "pina colada"]
 
 
 #-->TODO Write function to prompt the user to "Guess" if an element is present in your list. Store their response in a variable. 
 #   --> If their guess is in your list, print CONGRATULATIONS!
-
+def mdrink():
+    us = input("guess my favorite drink?")
+    if us in drinks:
+        print("Yes, that drink is a fav")
+    else:
+        print("No, that drink is not one of my favorites")
 
 #-->TODO Call your function.
 
-
+mdrink()
 
 print("------------------- CHALLENGE 5 : Nested ------------------")
 
@@ -98,6 +111,22 @@ for color in colors:
 
 
 #-->TODO Write a function that prints every letter in a sentence that a user enters.
+def poof():
+    global sen
+    sen =  input("Put in a sentence")
+    for z in sen:
+        print(" - " + z)
+
+        
+    
 
 
 #-->CHALLENGE: Let the user know which word is the shortest one!
+poof()
+
+def see():
+    t = sen.split
+    t.sort(key = len)
+    print(t[0])
+
+see()
