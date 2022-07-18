@@ -111,22 +111,21 @@ for color in colors:
 
 
 #-->TODO Write a function that prints every letter in a sentence that a user enters.
-def poof():
-    global sen
-    sen =  input("Put in a sentence")
-    for z in sen:
-        print(" - " + z)
-
+ 
         
     
 
 
 #-->CHALLENGE: Let the user know which word is the shortest one!
-poof()
 
-def see():
-    t = sen.split
-    t.sort(key = len)
+
+def see_shortest():
+    sen =  input("Put in a sentence")
+    for z in sen:
+        print(" - " + z)
+
+    t = sen.split()
+    t.sort(key=len)
     print(t[0])
 
-see()
+see_shortest()
