@@ -127,22 +127,20 @@ print("------------------- CHALLENGE 4 : MATH QUIZ   -------------------")
 
 is_correct = False
 
-def thing():
-  global ans
+#num1 = random.randrange(1, 100)
+#num2 = random.randrange(1, 100)
+#sum1 = num1 + num2
 
+#ans = input(f" what is the sum of {num1} and {num2}")
+#if int(ans) == sum1:
+ # print("Correct")
+ # ansc = True
+#elif int(ans) != sum1:
+#  ansc = False
+#while ansc == False:
+ # print("No, try again")
+  #ans = input(f" what is the sum of {num1} and {num2}")
 
-
-
-num1 = random.randrange(1, 100)
-num2 = random.randrange(1, 100)
-sum1 = num1 + num2
-thing()
-ans = input(f" what is the sum of {num1} and {num2}")
-while ans != sum1:
-  print("No, try again")
-  ans = input(f" what is the sum of {num1} and {num2}")
-if ans == sum1:
-  print("Correct")
 
 
 
@@ -153,20 +151,24 @@ print("------------------- CHALLENGE 5 : WHAT AM I?   -------------------")
 #         You are given two starter functions and a loop to get started! 
 #         Notice how one function calls the other and uses the returned value as the input. This is called Recursion! 
 
-keep_asking = False
-
+keep_asking = True
+active = True
 def prompt_user():
-    pass
+  global ans
+  ans = input ("I know you are a person, but what am I?")
+  response()
+  pass
 
-def response(response):
-    pass
-
-while keep_asking:
-    #response(prompt_user())
+def response(ans):
+  if ans == "something":
+    print ("correct")
+  elif ans == "stop":
+    print("ok")
+    active = False
+  elif (ans != "stop") and (ans  != "something"):
+    print("sorry")
     pass
 
 #-->TODO: Challenge! write a secret word to break out of the loop!
-
-
-
-
+while active:
+  prompt_user(response(ans))
