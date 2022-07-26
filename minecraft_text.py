@@ -1,13 +1,32 @@
 import random
+import sys 
 
 animals = ["Chicken", "pig", "sheep", "cow"]
 animals_drop = {"Chicken":1, "pig":2, "sheep":3, "cow":3}
 ffoods = ["3 apples", "3 watermelon", "5 potato", "1 carrot", "nothing"]
+exta = 0
+
+
+class Enemy: 
+    def __init__(self, name, health, attack, armor, weapon):
+        self.name = name
+        self.health = health
+        self.attack = attack
+        self.armor = armor
+        self.weapon = weapon
+    def __repr__(self):
+        return f"Name: {self.name}, Health: {self.health}, Attack damage: {self.attack}, Armor: {self.armor}, Weapon: {self.weapon} "
+
+zombie = Enemy("Zombie", 65, 10, 0, "Fists")
+drowned = Enemy("Drowned", 80, 20, 1, "Trident")
+ender_dragon =  Enemy("Ender Dragon", 60, 10, 10, "Fire breath")
+
 
 
 
 class Player:
     def __init__(self, name, energy):
+        self.day = 1
         self.name = name
         self.health = 100
         self.energy = energy
@@ -15,15 +34,16 @@ class Player:
         self.hunger = 9
         self.ooth = 9
         self.inventory  =  {}
-        self.weapons = ["fists"]
+        self.defence = 0
+        self.weapons = {"fists": 4}
         self.location = "spawn"
     def __repr__(self):
-        return f"Name: {self.name}, Health: {self.health}, Energy: {self.energy} Power: {self.armor}, Attack: {self.hunger}, Attack damage: {self.ooth}, Defence: {self.inventory}, Location:{self.location} "
+        return f"Day: {self.day} ,Name: {self.name}, Health: {self.health}, Energy: {self.energy} Armor: {self.armor}, Hunger: {self.hunger}, Out of: {self.ooth}, Inventory:{self.inventory}, Defence:{self.defence}, Weapons:{self.weapons}, Location:{self.location} "
 
 
     def cry(self):
         print("You let yourself cry for a few minutes. After crying you look up and think ...")
-        self.energy = self.energy - 1
+        self.energy = self.energy - 45
         
      
     def collect_dirt(self):
@@ -168,11 +188,14 @@ class Player:
         vnumo = 0
         vnumt = 0
         vnumth = 0
+        golem_1 = 1
+        golem_2 = 1
+        golem_3 = 1
         if (vc == "Villager1") and (vnumo == 0):
             self.energy = self.energy - 4
             vnumo += 1
             ans = input(f"Hello, here is my info {villager1}, nice to meet you. I can give you a prize if you answer this right. What is 1 + 1?")
-            if ans == 2:
+            if ans == "2":
                 player.inventory.update({"Fish":20})
             else:
                 print("That wrong")
@@ -180,18 +203,22 @@ class Player:
         elif (vc == "Villager2") and (vnumt == 0):
             self.energy = self.energy - 4
             vnumt += 1
-            ans = input(f"Hello, here is my info {villager2}, nice to meet you. I can give you a prize if you answer this right. What is  BTS?")
+            ans = input(f"Hello, here is my info {villager2}, nice to meet you. I can give you a prize if you answer this right. What is BTS?")
             if ans == "Bacon Turkey Sandwitch":
                 player.inventory.update({"Gold bar":30})
-                player.weapons.append("sword")
-                player.weapons.append("axe")
-                player.weapons.append("pickaxe")
+                player.weapons.update({"sword": 15})
+                player.weapons.update({"axe":10})
+                player.weapons.update({"pickaxe":8})
                 player.armor += 20
                 print("You got a full metal armor, a shield, sword, axe and a pickaxe")
             elif ans == "A band":
                 player.inventory.update({"Gold bar":10})
-                player.weapons.append("sword")
+                player.weapons.update("sword")
                 player.armor += 10
+                exta3 = player.weapons.get("fists")
+                exta1 = player.weapons.get("pickaxe")
+                exta0 = player.weapons.get("sword")
+                exta = 4 + exta0 + exta1 +exta3
                 print("You got a full leather armor, and a sword")
             else:
                 print("That wrong")
@@ -203,10 +230,161 @@ class Player:
                 player.inventory.update({"Bread":40})
             else:
                 print("That wrong")
+        elif (vc == "Golem1") and (golem_1 == 1):
+            self.energy = self.energy - 4
+            resp = input("You go see the Iron Golem. You stand right in front of it. It glares at you with it red eyes, trying to figure if you are a threat of not. What will you do?\nAttack\nLeave\nStay a little")
+            if resp == "Attack":
+                print("You attacked the golem")
+                print("The golem eye shines red as it lifts its arm and brings them down at you.")
+                print("You die")
+                sys.exit()
+            elif resp == "Leave":
+                print("You left")
+            elif resp == "Stay" or "Stay a little":
+                print("The golem face softens and gives you a flower")
+                if "Flower" in player.inventory == False:
+                    player.inventory.update({"Flower":1})
+                elif "Flower" in player.inventory == True:
+                    num1 = player.inventory.get("Flower")
+                    num2 = num1 + 1
+                    self.inventory.update({"Flower" : num2})
+            elif (vc == "Golem2") and (golem_2 == 1):
+                self.energy = self.energy - 4
+                resp2 = input("You go see the Iron Golem. You stand right in front of it. It glares at you with it red eyes, trying to figure if you are a threat of not. What will you do?\nAttack\nLeave\nStay a little")
+                if resp2 == "Attack":
+                    print("You attacked the golem")
+                    print("The golem eye shines red as it lifts its arm and brings them down at you.")
+                    print("You die")
+                    sys.exit()
+                elif resp2 == "Leave":
+                    print("You left")
+                elif resp2 == "Stay" or "Stay a little":
+                    print("The golem face softens and gives you a flower")
+                    if "Flower" in player.inventory == False:
+                        player.inventory.update({"Flower":1})
+                    elif "Flower" in player.inventory == True:
+                        num1 = player.inventory.get("Flower")
+                        num2 = num1 + 1
+                        self.inventory.update({"Flower" : num2})
+                elif (vc == "Golem3") and (golem_3 == 1):
+                    self.energy = self.energy - 4
+                    resp3 = input("You go see the Iron Golem. You stand right in front of it. It glares at you with it red eyes, trying to figure if you are a threat of not. What will you do?Attack\nLeave\nStay a little")
+                    if resp3 == "Attack":
+                        print("You attacked the golem")
+                        print("The golem eye shines red as it lifts its arm and brings them down at you.")
+                        print("You die")
+                        sys.exit()
+                    elif resp3 == "Leave":
+                        print("You left")
+                    elif resp3 == "Stay" or "Stay a little":
+                        print("The golem face softens and gives you a flower")
+                        if "Flower" in player.inventory == False:
+                            player.inventory.update({"Flower":1})
+                        if "Flower" in player.inventory == True:
+                            num1 = player.inventory.get("Flower")
+                            num2 = num1 + 1
+                            self.inventory.update({"Flower" : num2})
+
+
         else:
             print("Hello, you should prepare for the night.")
-            
 
+
+
+
+
+    def attack_zom(self):
+        roundnum = 1
+        
+        while player.health > 0 and zombie.health > 0:
+            print(f"Round {roundnum}")
+            player.health -= (zombie.attack - player.defence)
+            zombie.health -= (exta)
+            roundnum += 1
+            if player.health <= 0:
+                print("The zombie Won")
+                print ("You lose")
+                sys.exit()
+            if zombie.health <= 0:
+                print("The zombie is dead")
+                print ("You win")
+        
+    
+
+    def attack_dro(self):
+        roundnum = 1
+        if drowned.health <= 0:
+            print("The drowned is dead")
+            print ("You win")
+        while player.health > 0 and drowned.health > 0:
+            print(f"Round {roundnum}")
+            player.health -= (drowned.attack - player.defence)
+            drowned.health -= exta
+            roundnum += 1
+        
+    
+
+    # def weapon_ch(self):
+    #     print("You attack")
+    #     print(player.weapons)
+    #     if len(player.weapons) > 1:
+    #         weapon_c = ("What weapon you want to use?")
+    #         if weapon_c == "sword":
+
+    #             exta0 = player.weapons.get("sword")
+    #         elif weapon_c == "axe":
+    #             exta1 = player.weapons.get("axe")
+    #         elif weapon_c == "pickaxe":
+    #             exta2 = player.weapons.get("pickaxe")
+    #         elif weapon_c == "fists":
+    #             exta3 = player.weapons.get("fists")
+    #         exta = 4 + exta0 + exta1 +exta3
+    #         pass
+
+    def enemy_ch(self):    
+        numran = random.randrange(1, 3)
+        if numran  == 1:
+            print("You are being attacked by a zombie")
+            print(zombie)
+            c =  input("Run\nAttack")
+            if c == "Run":
+                Player.run(player)
+            elif c == "Attack":
+                Player.weapon_ch(player)
+                Player.attack_zom(player)
+            else:
+                print("You took to long to decide and it attacked you")
+                print("Rip")
+                sys.exit()
+
+        elif numran == 2:
+            print("You are being attacked by a drowned")
+            print(drowned) 
+            c =  input("Run\nAttack")
+            if c == "Run":
+                Player.run(player)
+            elif c == "Attack":
+                Player.weapon_ch(player)
+                Player.attack_dro(player)
+            else:
+                print("You took  to long to decide and it attacked you")
+                print("Rip")
+                sys.exit()
+        
+
+    def run(self):
+        print("You run")
+        numran2 = random.randrange(1, 3)
+        if numran2 == 1:
+            print("You were able to escape")
+            self.day += 1
+        elif numran2 == 2:
+            print("You weren't able to escape\nYou die")
+            sys.exit()
+
+        
+        
+        
 
 class Location:
     def __init__(self, name, energy, description, actions, items):
@@ -238,19 +416,6 @@ class Location:
     def enter(player, inp):
         player.location = inp
 
-class Enemy: 
-    def __init__(self, name, attack, armor, weapon):
-        self.name = name
-        self.attack = attack
-        self.armor = armor
-        self.weapon = weapon
-    def __repr__(self):
-        return f"Name: {self.name}, Attack damage: {self.attack}, Armor: {self.armor}, Weapon: {self.weapon} "
-
-zombie = Enemy("Zombie", 10, 0, "Fists")
-drowned = Enemy("Drowned", 20, 1, "Trident")
-ender_dragon =  Enemy("Ender Dragon", 10, 10, "Fire breath")
-
 
 
 class Village_people:
@@ -265,21 +430,28 @@ class Village_people:
 villager1 = Village_people("Bill", "Fisher", 6, "Fishing pole")
 villager2 = Village_people("Bob", "Blacksmith", 20, "Axes")
 villager3 = Village_people("Joe", "Farmer/Baker", 5, "Hoe")
-golem1 = Village_people("Golem", "Protector", 25, "Fists")
-golem2 = Village_people("Golem", "Protector", 25, "Fists")
-golem3 = Village_people("Golem", "Protector", 25, "Fists")
+golem1 = Village_people("Golem", "Protector", 35, "Fists")
+golem2 = Village_people("Golem", "Protector", 35, "Fists")
+golem3 = Village_people("Golem", "Protector", 35, "Fists")
 
 def night():
     print ("It is night time")
-    numran = random.randrange(1, 3)
-    if numran  == 1:
-        print("You are being attacked by a zombie")
-        print(zombie)
+    if player.day == 1:
+        print ("A villager hurries to you.")
+        print ("Hurry, before the monsters come, I let you stay in my house tonight, tomorrow you are on your on.")
+        print ("You hurry to his house and rest")
+        player.day += 1
+        player.energy += 45
+        prompt()
+    else: 
+        Player.enemy_ch(player)
 
 
 
 
-    
+
+
+
 
 
 def prompt():
@@ -310,10 +482,14 @@ def prompt():
         Player.wood(player)
     elif decision == "Move":
         Location.move()
-    elif decision == "Talk to villagers":
-        Player.talk
+    elif decision == "Talk to villagers" or "Talk" and player.location == "village":
+        Player.talk(player)
     else:
         prompt()
+    if int(player.energy) <= 0:
+        night()
+
+
 
 
 name = input("Hello, you wake up in the middle of an island in minecraft. \nThere is a village near by and a small forest. \nYou know you have to get ready of night fall. \nBefore you start, are you Alex or Steve or someone else?\n(There is no name changing. Choose wisely)")
@@ -321,9 +497,10 @@ player = Player(name, 45)
 prompt()
 
 
-num_en = int(player.energy)
-if num_en <= 0:
-    night()
 
-while num_en >= 0:
+while int(player.energy) >= 0:
     prompt()
+
+while player.health >= 0:
+    print("You died")
+    sys.exit()
