@@ -23,8 +23,12 @@ print("------------------- CHALLENGE 1 : DEFINE    -------------------")
 
 dictionary = {
     "name": "box",
-    "is_empty": True
+    "is_empty": True,
+    "age": 15,
+    "grade": 10,
+    "fdrink": "ice tea"
 }
+
 #working with the dictionary:
 dictionary["length"] = 12
 dictionary["width"] = 8
@@ -40,7 +44,12 @@ print(dictionary)
 
 ##################################  MY dictionary ########################### #/
 
-
+dict = {
+    "string": "1 one 2 two 3 three",
+    "bool": True,
+    "num": 1,
+    "list": ["code", "is", "code"]
+}
 
 
 
@@ -52,19 +61,19 @@ print(dictionary)
 print("------------------- CHALLENGE 2 : MODIFY   -------------------")
 
 #-->TODO: Print your dictionary you created above
-
+print(dict)
 
 #-->TODO: Update the dictionary you just created  by adding new properties and values, including list elements, in this section.
-
-
+dict.update({"pokeball": "red"})
+dict.update({"pokemon": ["warlog", "charmander", "mew", "Mewto", "Articuno"]})
 #-->TODO: Print your dictionary again and observe changes
 
-
+print(dict)
 print("------------------- CHALLENGE 3 : MEHTODS   -------------------")
 
 
 #-->TODO: Make a method that will update your dictionary value. It should take in a dictionary and return it modified.
-
+dict.update({"pokeball": "black"})
 
 #-->TODO: Call the method.
 
@@ -73,3 +82,8 @@ print("------------------- CHALLENGE 3 : MEHTODS   -------------------")
 print("------------------- CHALLENGE 4 : LITERALLY   -------------------")
 
 #-->TODO: Put it all together using a string literal to tell the story of your dictionary!
+print("Hello, a simple truth is " + str(dict["list"]))
+print("I like pokemon, here are some of the ones  remeber " + str(dict["pokemon"]))
+print("And here is how you wriite 1, 2, and 3 " + str(dict["string"]))
+print("This is " + str(dict["bool"]))
+print("And breakfast is the " + str(dict["num"]) + " meal of the day")

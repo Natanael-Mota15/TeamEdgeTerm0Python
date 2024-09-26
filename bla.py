@@ -1,0 +1,1 @@
+if (location == spawn) or (location == water) or (location == village) or (location == forest):
